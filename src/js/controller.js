@@ -1,41 +1,45 @@
-import {
-  getCurrentQuestion,
-  nextQuestion,
-  updateScore,
-  scoreReport,
-} from "./model.js";
-
 // importing objects
 import viewObj from "./view.js";
+import modelObj from "./model.js";
 
 class App {
-  constructor() {
-    const data = getCurrentQuestion();
-    viewObj.render(data);
+  async getInitialData() {
+    try {
+      await modelObj.getJson();
+      const data = modelObj.getCurrentQuestion();
+      viewObj.render(data);
 
-    // add events
-    viewObj.clickEventHandler(this.handleUserSelection);
-    viewObj.nextQUestionEvent(this.nextQuestionHandle);
+      // events
+      viewObj.clickEventHandler(this.handleUserSelection);
+      viewObj.nextQUestionEvent(this.nextQuestionHandle);
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   handleUserSelection(userAnswer) {
-    updateScore(userAnswer);
+    modelObj.updateScore(userAnswer);
     viewObj.disableClickEvent();
   }
 
   nextQuestionHandle() {
-    const hasNext = nextQuestion();
+    console.log("i came here");
+    const hasNext = modelObj.nextQuestion();
     if (hasNext) {
-      const data = getCurrentQuestion();
+      const data = modelObj.getCurrentQuestion();
       viewObj.render(data);
       viewObj.enableClickEvent();
       // enable the click event
     } else {
       // I need to dipaly the score
-      const scoreData = scoreReport();
+      const scoreData = modelObj.scoreReport();
       viewObj.render(scoreData, true);
     }
   }
 }
 
 const app = new App();
+
+(async () => {
+  await app.getInitialData();
+})();

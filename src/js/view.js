@@ -20,6 +20,7 @@ class View {
   }
 
   _generateMarkup() {
+    console.log(this._data);
     const innerMarkup = this._data.options
       .map(
         (opt, indx) =>
@@ -68,10 +69,6 @@ class View {
       // handle the model logic
       //
       handler(userAnswer);
-
-      // quizOptionListEl.style.pointerEvents = "none";
-      // this.classList.add("click_disabled");
-      // this.style.pointerEvents = "none";
     });
   }
 
