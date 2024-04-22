@@ -5,12 +5,11 @@
 
 body {
   font-family: sans-serif;
-  /* overflow: hidden; */
+
   background: #001e44;
 }
 
 .quiz_container {
-  /* background-color: red; */
   background: #fff;
   overflow: hidden;
   width: 90%;
@@ -77,7 +76,6 @@ body {
   color: #fff;
   border: 1px solid #222;
   font-weight: 550;
-  /* display: none; */
 }
 
 .hidden {
