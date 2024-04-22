@@ -43,8 +43,9 @@ class View {
   }
 
   clickEventHandler(handler) {
-    this._quizOptionListEl.addEventListener("click", function (e) {
+    this._quizOptionListEl.addEventListener("click", (e) => {
       if (!e.target.classList.contains("quiz_option_list_item")) return;
+      this._submitButton.classList.remove("hidden");
 
       const userChoiceEl = e.target;
       const userAnswer = e.target.dataset.result;
@@ -73,11 +74,12 @@ class View {
   }
 
   nextQUestionEvent(handler) {
-    this._formEl.addEventListener("submit", function (e) {
+    this._formEl.addEventListener("submit", (e) => {
       // prevent it from submittting
       e.preventDefault();
 
-      handler();
+      const shouldDisplay = handler();
+      if (!shouldDisplay) this._submitButton.classList.add("hidden");
     });
   }
 

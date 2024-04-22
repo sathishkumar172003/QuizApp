@@ -23,18 +23,23 @@ class App {
   }
 
   nextQuestionHandle() {
-    console.log("i came here");
+    let shouldDisplay = false;
+
     const hasNext = modelObj.nextQuestion();
     if (hasNext) {
       const data = modelObj.getCurrentQuestion();
       viewObj.render(data);
       viewObj.enableClickEvent();
+
       // enable the click event
     } else {
       // I need to dipaly the score
       const scoreData = modelObj.scoreReport();
+      shouldDisplay = true;
       viewObj.render(scoreData, true);
     }
+
+    return shouldDisplay;
   }
 }
 
