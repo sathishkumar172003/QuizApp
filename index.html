@@ -3,12 +3,50 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Technical Quiz App</title>
+    <title>Tech Quiz</title>
+    <script src="./src/js/controller.js" type="module" defer></script>
     <link rel="stylesheet" href="./src/css/sytle.css" />
-    <script src="./src/js/controller.js" defer type="module"></script>
   </head>
   <body>
-    <article class="quiz_container">
+    <header>
+      <h1>Tech Quiz</h1>
+    </header>
+
+    <div class="main">
+      <h1>user preferences</h1>
+      <form action="#" class="user_preference_form">
+        <div class="difficulty_box">
+          <label for="difficulty">Difficulty</label>
+          <select name="difficulty">
+            <option value="hard">Hard</option>
+            <option value="medium">Medium</option>
+            <option value="easy">Easy</option>
+          </select>
+        </div>
+
+        <div class="category_box">
+          <label for="category">Category</label>
+          <select name="category">
+            <option value="Linux">Linux</option>
+            <option value="DevOps">DevOps</option>
+            <option value="Code">Code</option>
+          </select>
+        </div>
+
+        <div class="limit">
+          <label for="limit">Limit</label>
+          <select name="limit">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+          </select>
+        </div>
+
+        <button type="submit">Generate Quiz</button>
+      </form>
+    </div>
+
+    <article class="quiz_container hidden">
       <header class="quiz_container_header">
         <h1 class="quiz_title">Simple Quiz</h1>
       </header>
@@ -28,7 +66,7 @@
 
       <section class="quiz_container_footer">
         <form action="" class="quiz_form">
-          <button type="submit" class="submit_button hidden" >Next</button>
+          <button type="submit" class="submit_button">Next</button>
         </form>
       </section>
     </article>

@@ -12,9 +12,8 @@ class Model {
     };
   }
   // getches the data from api and modify the _questionData in place
-  async getJson() {
+  async getJson(url = `${API_URI}?category=Linux&limit=5&apiKey=${API_TOKEN}`) {
     try {
-      const url = `${API_URI}?category=Linux&limit=5&apiKey=${API_TOKEN}`;
       const response = await fetch(url);
       const data = await response.json();
 
@@ -52,6 +51,7 @@ class Model {
 
       this._questionData.totalQuestions =
         this._questionData.questionBank.length;
+      // console.log(this._questionData.totalQuestions);
     } catch (e) {
       throw e;
     }

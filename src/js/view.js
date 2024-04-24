@@ -4,8 +4,8 @@ class View {
   _formEl = document.querySelector(".quiz_form");
   _quizQuestionTitleEl = document.querySelector(".quiz_question");
   _submitButton = document.querySelector(".submit_button");
-
-  _data;
+  _userPreferenceFormEl = document.querySelector(".user_preference_form");
+  _mainEl = document.querySelector(".main");
 
   render(data, result = false) {
     // data contains current question to be displayed
@@ -79,7 +79,21 @@ class View {
       e.preventDefault();
 
       const shouldDisplay = handler();
-      if (!shouldDisplay) this._submitButton.classList.add("hidden");
+      // if should display is false, the if statement will be executed.
+      if (shouldDisplay) this._submitButton.innerText = "Next";
+    });
+  }
+
+  userPreferenceClickEvent(handler) {
+    this._userPreferenceFormEl.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const data = new FormData(this._userPreferenceFormEl);
+      const dataObj = Object.fromEntries(data);
+      this._mainEl.classList.add("hidden");
+      this._quizContainerBodyEl
+        .closest(".quiz_container")
+        .classList.remove("hidden");
+      handler(dataObj);
     });
   }
 

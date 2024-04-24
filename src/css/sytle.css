@@ -92,3 +92,58 @@ body {
 .click_disabled {
   pointer-events: none;
 }
+
+.main {
+  position: absolute;
+  width: 50%;
+  height: 40%;
+  margin-left: 450px;
+  margin-top: 200px;
+  /* box-sizing: border-box; */
+  text-align: center;
+  background-color: rgb(98, 223, 98);
+}
+
+.user_preference_form {
+  /* width: 50%; */
+  display: flex;
+  gap: 30px;
+  padding: 40px 40px;
+  position: relative;
+  background-color: rgb(43, 107, 43);
+  /* width: 100%; */
+  height: 70%;
+  padding-top: 80px;
+}
+
+.user_preference_form div {
+  background-color: rgb(211, 81, 81);
+  width: 30%;
+  padding: 20px 10px;
+  text-align: center;
+  font-size: 1.4rem;
+  height: 50%;
+}
+
+select {
+  width: 90%;
+  height: 50px;
+  margin-top: 20px;
+  font-size: 1.3rem;
+  padding: 0 5px;
+}
+
+.user_preference_form button {
+  position: absolute;
+  bottom: 10px;
+  left: 340px;
+  background-color: #e87b59;
+  width: 250px;
+  height: 50px;
+  font-size: 1.5rem;
+}
+
+body > header > h1 {
+  color: #fff;
+  font-size: 3rem;
+}

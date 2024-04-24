@@ -1,20 +1,30 @@
+import { API_URI, API_TOKEN } from "./config.js";
+
 // importing objects
 import viewObj from "./view.js";
 import modelObj from "./model.js";
 
 class App {
-  async getInitialData() {
+  constructor() {
+    viewObj.userPreferenceClickEvent(this.getInitialData);
+    this.initialOps();
+  }
+  async getInitialData(dataObj) {
     try {
-      await modelObj.getJson();
+      const url = `${API_URI}?category=${dataObj.category}&limit=${dataObj.limit}&difficulty=${dataObj.difficulty}&apiKey=${API_TOKEN}`;
+      await modelObj.getJson(url);
+      // this.initialOps();
       const data = modelObj.getCurrentQuestion();
       viewObj.render(data);
-
-      // events
-      viewObj.clickEventHandler(this.handleUserSelection);
-      viewObj.nextQUestionEvent(this.nextQuestionHandle);
     } catch (e) {
       console.log(e);
     }
+  }
+
+  initialOps() {
+    // events
+    viewObj.clickEventHandler(this.handleUserSelection);
+    viewObj.nextQUestionEvent(this.nextQuestionHandle);
   }
 
   handleUserSelection(userAnswer) {
@@ -26,6 +36,7 @@ class App {
     let shouldDisplay = false;
 
     const hasNext = modelObj.nextQuestion();
+
     if (hasNext) {
       const data = modelObj.getCurrentQuestion();
       viewObj.render(data);
@@ -39,12 +50,8 @@ class App {
       viewObj.render(scoreData, true);
     }
 
-    return shouldDisplay;
+    return hasNext;
   }
 }
 
 const app = new App();
-
-(async () => {
-  await app.getInitialData();
-})();
